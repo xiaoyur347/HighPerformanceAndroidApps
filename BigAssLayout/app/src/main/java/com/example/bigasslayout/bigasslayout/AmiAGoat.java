@@ -18,10 +18,12 @@ public class AmiAGoat extends Application {
         AmiAGoat application = (AmiAGoat) context.getApplicationContext();
         return application.refWatcher;
     }
+
     private RefWatcher refWatcher;
 
 
-    @Override public void onCreate() {
+    @Override
+    public void onCreate() {
         super.onCreate();
         //on app creation - turn on leakcanary
 

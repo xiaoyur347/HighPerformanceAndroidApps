@@ -5,7 +5,7 @@ package com.example.bigasslayout.bigasslayout;
  */
 public class Images {
 
-     static final String[] urls = {
+    static final String[] urls = {
             "http://i661.photobucket.com/albums/uu340/dougtest/001-20140412_124543_000_zpsee3872d4.jpg",
             "http://i661.photobucket.com/albums/uu340/dougtest/002-20140412_124543_001_zpsd2637741.jpg",
             "http://i661.photobucket.com/albums/uu340/dougtest/005-20140412_124543_004_zpsff83e911.jpg",

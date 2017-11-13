@@ -96,6 +96,56 @@ public class BALayout extends Activity {
         super.onSaveInstanceState(savedInstanceState);
     }
 
+    private void initArray() {
+        //more stuff! Bwa ha ha ha
+        goatNames = new String[]{
+                "http://bit.ly/1JOpkQo",
+                "http://bit.ly/1ADUYfk",
+                "http://bit.ly/1t701Eh",
+                "http://bit.ly/1xdCS4D",
+                "http://bit.ly/1B1UVb8",
+                "rooster",
+                "Ani the Pygora",
+                "Llama",
+                "Alden the Pygora",
+                "http://bit.ly/16NeqeA",
+                "http://bit.ly/1zfqTym",
+                "http://bit.ly/1AWSOpf",
+                "http://bit.ly/1sUlPNI"
+        };
+        goatPix = new int[]{
+                R.drawable.babygoatsjan2007crop,
+                R.drawable.mountaingoat,
+                R.drawable.goatwithunusualhorns,
+                R.drawable.hausziege04,
+                R.drawable.feralgoat,
+                R.drawable.rooster,
+                R.drawable.ani,
+                R.drawable.llama,
+                R.drawable.alden,
+                R.drawable.goatracing,
+                R.drawable.goatinacar,
+                R.drawable.boogoat,
+                R.drawable.donkey
+        };
+
+        goatTrue = new boolean[]{
+                true,
+                true,
+                true,
+                true,
+                true,
+                false,
+                true,
+                false,
+                true,
+                true,
+                true,
+                true,
+                false
+        };
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +177,6 @@ public class BALayout extends Activity {
                 MemoryLeakText = getResources().getString(R.string.memoryLeaktrue);
             }
 
-
             if (!lotsOfObjects) {
                 //load from saved state
                 goatNames = savedInstanceState.getStringArray(STATE_GoatPicName);
@@ -136,112 +185,14 @@ public class BALayout extends Activity {
             } else {
                 didIAddObjects = getResources().getString(R.string.extraObjectstrue);
                 //more stuff! Bwa ha ha ha
-                goatNames = new String[]{
-                        "http://bit.ly/1JOpkQo",
-                        "http://bit.ly/1ADUYfk",
-                        "http://bit.ly/1t701Eh",
-                        "http://bit.ly/1xdCS4D",
-                        "http://bit.ly/1B1UVb8",
-                        "rooster",
-                        "Ani the Pygora",
-                        "Llama",
-                        "Alden the Pygora",
-                        "http://bit.ly/16NeqeA",
-                        "http://bit.ly/1zfqTym",
-                        "http://bit.ly/1AWSOpf",
-                        "http://bit.ly/1sUlPNI"
-
-                };
-                goatPix = new int[]{
-                        R.drawable.babygoatsjan2007crop,
-                        R.drawable.mountaingoat,
-                        R.drawable.goatwithunusualhorns,
-                        R.drawable.hausziege04,
-                        R.drawable.feralgoat,
-                        R.drawable.rooster,
-                        R.drawable.ani,
-                        R.drawable.llama,
-                        R.drawable.alden,
-                        R.drawable.goatracing,
-                        R.drawable.goatinacar,
-                        R.drawable.boogoat,
-                        R.drawable.donkey
-
-                };
-
-                goatTrue = new boolean[]{
-                        true,
-                        true,
-                        true,
-                        true,
-                        true,
-                        false,
-                        true,
-                        false,
-                        true,
-                        true,
-                        true,
-                        true,
-                        false
-
-                };
+                initArray();
             }
         } else {
             //initialize
-            goatNames = new String[]{
-                    "http://bit.ly/1JOpkQo",
-                    "http://bit.ly/1ADUYfk",
-                    "http://bit.ly/1t701Eh",
-                    "http://bit.ly/1xdCS4D",
-                    "http://bit.ly/1B1UVb8",
-                    "rooster",
-                    "Ani the Pygora",
-                    "Llama",
-                    "Alden the Pygora",
-                    "http://bit.ly/16NeqeA",
-                    "http://bit.ly/1zfqTym",
-                    "http://bit.ly/1AWSOpf",
-                    "http://bit.ly/1sUlPNI"
-
-            };
-            goatPix = new int[]{
-                    R.drawable.babygoatsjan2007crop,
-                    R.drawable.mountaingoat,
-                    R.drawable.goatwithunusualhorns,
-                    R.drawable.hausziege04,
-                    R.drawable.feralgoat,
-                    R.drawable.rooster,
-                    R.drawable.ani,
-                    R.drawable.llama,
-                    R.drawable.alden,
-                    R.drawable.goatracing,
-                    R.drawable.goatinacar,
-                    R.drawable.boogoat,
-                    R.drawable.donkey
-
-            };
-
-            goatTrue = new boolean[]{
-                    true,
-                    true,
-                    true,
-                    true,
-                    true,
-                    false,
-                    true,
-                    false,
-                    true,
-                    true,
-                    true,
-                    true,
-                    false
-
-            };
+            initArray();
         }
         if (memoryLeakTF) {
             //calling the memory leak class
-
-
             CancelTheWatch NoNeed = new CancelTheWatch();
             // Ocean northAtlantic = new Ocean();
             Iceberg theBigOne = new Iceberg();
@@ -312,7 +263,7 @@ public class BALayout extends Activity {
             //default is slowest
             menu.getItem(1).setChecked(true);
         }
-        //now fix fibonacci, invaldations and creating objects
+        //now fix fibonacci, invalidates and creating objects
         if (useFibonacci) {
             menu.getItem(6).setChecked(true);//set fib on
         } else {
@@ -494,8 +445,6 @@ public class BALayout extends Activity {
         textTotal.append(timeString);
         textTotal.append("\n" + xmlUsed + ", " + useFib + ", " + mainViewStat + ", " + didIAddObjects + ", " + MemoryLeakText);
     }
-
-
 }
 
 

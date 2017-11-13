@@ -259,30 +259,33 @@ public class BALayout extends Activity {
             menu.getItem(4).setChecked(true);
         } else if (xmlUsed.equals(getResources().getString(R.string.RLfastXml))) {
             menu.getItem(5).setChecked(true);
+        } else if (xmlUsed.equals(getResources().getString(R.string.myfast))) {
+            menu.getItem(6).setChecked(true);
         } else {
             //default is slowest
             menu.getItem(1).setChecked(true);
         }
+        int fibonacci_index = 7;
         //now fix fibonacci, invalidates and creating objects
         if (useFibonacci) {
-            menu.getItem(6).setChecked(true);//set fib on
+            menu.getItem(fibonacci_index).setChecked(true);//set fib on
         } else {
-            menu.getItem(6).setChecked(false);
+            menu.getItem(fibonacci_index).setChecked(false);
         }//set false
         if (invalidateMainView) {
-            menu.getItem(7).setChecked(true);//set invalidate on
+            menu.getItem(fibonacci_index + 1).setChecked(true);//set invalidate on
         } else {
-            menu.getItem(7).setChecked(false);
+            menu.getItem(fibonacci_index + 1).setChecked(false);
         }//set false
         if (lotsOfObjects) {
-            menu.getItem(8).setChecked(true);//set create obj on
+            menu.getItem(fibonacci_index + 2).setChecked(true);//set create obj on
         } else {
-            menu.getItem(8).setChecked(false);
+            menu.getItem(fibonacci_index + 2).setChecked(false);
         }//set false
         if (memoryLeakTF) {
-            menu.getItem(9).setChecked(true);//set create obj on
+            menu.getItem(fibonacci_index + 3).setChecked(true);//set create obj on
         } else {
-            menu.getItem(9).setChecked(false);
+            menu.getItem(fibonacci_index + 3).setChecked(false);
         }//set false
 
         super.onPrepareOptionsMenu(menu);
@@ -326,6 +329,10 @@ public class BALayout extends Activity {
                 break;
             case R.id.fastRLinrow:
                 xmlUsed = getResources().getString(R.string.RLfastXml);
+                item.setChecked(true);
+                break;
+            case R.id.myfast:
+                xmlUsed = getResources().getString(R.string.myfast);
                 item.setChecked(true);
                 break;
             case R.id.useFib:
@@ -403,6 +410,9 @@ public class BALayout extends Activity {
         } else if (xml.equals(getResources().getString(R.string.removeLLoverdrawXml))) {
             setContentView(R.layout.nollnooverdrawactivity_balayout);
             mainView = findViewById(R.id.noLLnoOverdrawLayout);
+        } else if (xml.equals(getResources().getString(R.string.myfast))) {
+            setContentView(R.layout.my_optimize_activity);
+            mainView = findViewById(R.id.bloadtedLayout);
         } else {
             //fastest xml //this will also give us the RL optimized version, since that is in the Goatrow XML.
             setContentView(R.layout.fastestactivity_balayout);

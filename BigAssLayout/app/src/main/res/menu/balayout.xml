@@ -39,6 +39,12 @@
             android:title="@string/RLfastXml"
 
             />
+        <item android:id="@+id/myfast"
+            android:orderInCategory="310"
+            android:onClick="onGroupItemClick"
+            android:title="@string/myfast"
+
+            />
     </group>
 
     <item android:id="@+id/useFib"

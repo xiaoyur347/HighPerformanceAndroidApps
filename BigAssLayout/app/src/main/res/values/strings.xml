@@ -12,6 +12,7 @@
     <string name="removeLLoverdrawXml">Remove LL+Overdraw</string>
     <string name="fastXml">Optimized Layout</string>
     <string name="RLfastXml">More Optimized Layout:RL</string>
+    <string name="myfast">My Optimized Layout</string>
 
     <string name="useFib">Fibonacci Delay</string>
     <string name="invalidateMain">Invalidate Main View</string>

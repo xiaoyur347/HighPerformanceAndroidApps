@@ -58,6 +58,9 @@ public class GoatList extends ArrayAdapter<String> {
             //use view with as much overdraw removed as possible
             //this also removes one layer of the goat row by using a relative layout
             rowView = inflater.inflate(R.layout.rlfastestgoatrow, null, true);
+        } else if (xmlSpeed.matches(context.getResources().getString(R.string.myfast))) {
+            //my fast view
+            rowView = inflater.inflate(R.layout.my_optimize_goatrow, null, true);
         } else //fastest
         {
             rowView = inflater.inflate(R.layout.fastestgoatrow, null, true);

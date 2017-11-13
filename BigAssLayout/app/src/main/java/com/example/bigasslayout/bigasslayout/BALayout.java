@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,12 +17,12 @@ import java.util.ArrayList;
 
 
 class Iceberg {
-    static ArrayList<byte[]> iceSheet = new ArrayList<byte[]>();
+    static private ArrayList<byte[]> iceSheet = new ArrayList<>();
 
     void sink() {
         byte[] mostlyUnderwater;
         mostlyUnderwater = new byte[2048 * 1024];
-        iceSheet.add(mostlyUnderwater);//icesheet should grow by 2MB every rotation
+        iceSheet.add(mostlyUnderwater);//ice sheet should grow by 2MB every rotation
         Log.i("iceberg", "Captain, I think we might have hit something.");
     }
 }
@@ -40,7 +39,6 @@ public class BALayout extends Activity {
     View mainView;
     GoatList adapter;
     TextView textTotal;
-    RadioButton xmlChoice;
     //options menu id
     int id;
 
@@ -51,7 +49,7 @@ public class BALayout extends Activity {
     boolean useFibonacci = false;
     String useFib;
     //by default invalidate the main view
-    boolean invaliatdeMainView = true;
+    boolean invalidateMainView = true;
     String mainViewStat;
     //adding objects during rendering
     boolean lotsOfObjects = false;
@@ -88,7 +86,7 @@ public class BALayout extends Activity {
         // Save the user's current game state
         savedInstanceState.putString(STATE_XML, xmlUsed);
         savedInstanceState.putBoolean(STATE_fibb, useFibonacci);
-        savedInstanceState.putBoolean(STATE_ivValdateViews, invaliatdeMainView);
+        savedInstanceState.putBoolean(STATE_ivValdateViews, invalidateMainView);
         savedInstanceState.putBoolean(STATE_AddedObjects, lotsOfObjects);
         savedInstanceState.putBoolean(STATE_Leak, memoryLeakTF);
         savedInstanceState.putStringArray(STATE_GoatPicName, goatNames);
@@ -117,9 +115,9 @@ public class BALayout extends Activity {
             // Restore value of members from saved state
             xmlUsed = savedInstanceState.getString(STATE_XML);
             useFibonacci = savedInstanceState.getBoolean(STATE_fibb);
-            invaliatdeMainView = savedInstanceState.getBoolean(STATE_ivValdateViews);
+            invalidateMainView = savedInstanceState.getBoolean(STATE_ivValdateViews);
             //change text if false
-            if (!invaliatdeMainView) {
+            if (!invalidateMainView) {
                 mainViewStat = getResources().getString(R.string.mainviewInvalidatedfalse);
             }
             lotsOfObjects = savedInstanceState.getBoolean(STATE_AddedObjects);
@@ -268,14 +266,13 @@ public class BALayout extends Activity {
             NoNeed.iceberg.sink();
         }
         //draw the views. This will vary depending on the settings
-        createTheViews(xmlUsed, useFibonacci);
-
+        createTheViews(xmlUsed);
     }
 
     @Override
     public void onDestroy() {
-        //only destroy stuff if expictly say so :)
-        if (invaliatdeMainView == true) {
+        //only destroy stuff if explicitly say so :)
+        if (invalidateMainView) {
             mainView = null;
             textTotal = null;
             adapter = null;
@@ -301,37 +298,37 @@ public class BALayout extends Activity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         //fix the menu options on screen rotation.
 
-        if (xmlUsed == getResources().getString(R.string.slowestXml)) {
+        if (xmlUsed.equals(getResources().getString(R.string.slowestXml))) {
             menu.getItem(1).setChecked(true);
-        } else if (xmlUsed == getResources().getString(R.string.overdrawXml)) {
+        } else if (xmlUsed.equals(getResources().getString(R.string.overdrawXml))) {
             menu.getItem(2).setChecked(true);
-        } else if (xmlUsed == getResources().getString(R.string.removeLLoverdrawXml)) {
+        } else if (xmlUsed.equals(getResources().getString(R.string.removeLLoverdrawXml))) {
             menu.getItem(3).setChecked(true);
-        } else if (xmlUsed == getResources().getString(R.string.fastXml)) {
+        } else if (xmlUsed.equals(getResources().getString(R.string.fastXml))) {
             menu.getItem(4).setChecked(true);
-        } else if (xmlUsed == getResources().getString(R.string.RLfastXml)) {
+        } else if (xmlUsed.equals(getResources().getString(R.string.RLfastXml))) {
             menu.getItem(5).setChecked(true);
         } else {
             //default is slowest
             menu.getItem(1).setChecked(true);
         }
         //now fix fibonacci, invaldations and creating objects
-        if (useFibonacci == true) {
+        if (useFibonacci) {
             menu.getItem(6).setChecked(true);//set fib on
         } else {
             menu.getItem(6).setChecked(false);
         }//set false
-        if (invaliatdeMainView == true) {
-            menu.getItem(7).setChecked(true);//set ivalidate on
+        if (invalidateMainView) {
+            menu.getItem(7).setChecked(true);//set invalidate on
         } else {
             menu.getItem(7).setChecked(false);
         }//set false
-        if (lotsOfObjects == true) {
+        if (lotsOfObjects) {
             menu.getItem(8).setChecked(true);//set create obj on
         } else {
             menu.getItem(8).setChecked(false);
         }//set false
-        if (memoryLeakTF == true) {
+        if (memoryLeakTF) {
             menu.getItem(9).setChecked(true);//set create obj on
         } else {
             menu.getItem(9).setChecked(false);
@@ -394,13 +391,12 @@ public class BALayout extends Activity {
             case R.id.invalidateMain:
                 if (item.isChecked()) {
                     item.setChecked(false);
-                    invaliatdeMainView = false;
+                    invalidateMainView = false;
                     mainViewStat = getResources().getString(R.string.mainviewInvalidatedfalse);
                 } else {
                     item.setChecked(true);
-                    invaliatdeMainView = true;
+                    invalidateMainView = true;
                     mainViewStat = getResources().getString(R.string.mainviewInvalidatedtrue);
-                    ;
                 }
                 break;
             case R.id.addObjects:
@@ -427,7 +423,7 @@ public class BALayout extends Activity {
                 break;
         }
 
-        if (invaliatdeMainView == true) {
+        if (invalidateMainView) {
             mainView.invalidate();
             adapter.notifyDataSetInvalidated();
             if (adapter.rowCheck != null) {
@@ -436,32 +432,30 @@ public class BALayout extends Activity {
         }
         //else   - dont. :)
 
-        createTheViews(xmlUsed, useFibonacci);
+        createTheViews(xmlUsed);
 
 
     }
 
-    public void createTheViews(String xml, Boolean fib) {
+    public void createTheViews(String xml) {
 
 
         starttime = System.currentTimeMillis();
         //the main layout can become more optimized.
 
-        if (xml == getResources().getString(R.string.slowestXml)) {
+        if (xml.equals(getResources().getString(R.string.slowestXml))) {
             setContentView(R.layout.activity_balayout);
             mainView = findViewById(R.id.bloadtedLayout);
-        } else if (xml == getResources().getString(R.string.overdrawXml)) {
+        } else if (xml.equals(getResources().getString(R.string.overdrawXml))) {
             setContentView(R.layout.nooverdrawactivity_balayout);
             mainView = findViewById(R.id.noOverdrawLayout);
-        } else if (xml == getResources().getString(R.string.removeLLoverdrawXml)) {
+        } else if (xml.equals(getResources().getString(R.string.removeLLoverdrawXml))) {
             setContentView(R.layout.nollnooverdrawactivity_balayout);
             mainView = findViewById(R.id.noLLnoOverdrawLayout);
         } else {
-            //fastestxml //this will also giveus the RL optimized version, since that is in the Goatrow XML.
+            //fastest xml //this will also give us the RL optimized version, since that is in the Goatrow XML.
             setContentView(R.layout.fastestactivity_balayout);
             mainView = findViewById(R.id.fastestLayout);
-
-
         }
 
 
@@ -475,9 +469,9 @@ public class BALayout extends Activity {
         list.setAdapter(adapter);
 
 
-        if (lotsOfObjects == true) {
+        if (lotsOfObjects) {
 
-            //this is a clicklistener I was playing with, and forgot about and left in. oops.
+            //this is a click listener I was playing with, and forgot about and left in. oops.
             //when say create more objects, I'll toss this bad boy back into the mix :)
 
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

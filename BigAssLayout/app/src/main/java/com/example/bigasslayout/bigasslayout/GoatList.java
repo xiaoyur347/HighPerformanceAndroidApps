@@ -88,14 +88,15 @@ public class GoatList extends ArrayAdapter<String> {
             } else {//no crazy slowdown from fibonacci.
                 rowTxt.setText(goatNames[position]);
             }
-            rowImg.setImageResource((goatPix[position]));
+
+            rowImg.setImageResource(goatPix[position]);
             rowCheck.setChecked(goatTrue[position]);
             rowCheck.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     CheckBox checkedBox = (CheckBox) v;
 
-                    //this all has to be inversed. If the user checks the box - it WAS unchecked
+                    //this all has to be inverse. If the user checks the box - it WAS unchecked
                     if (!checkedBox.isChecked()) {
                         //button WAS checked. User unchecked it
                         //goat
@@ -107,18 +108,15 @@ public class GoatList extends ArrayAdapter<String> {
                         checkedBox.setChecked(false);
                         Toast.makeText(context, "Come on, \nThis is a NOT a goat", Toast.LENGTH_SHORT).show();
                     }
-
-
                 }
             });
-
-
         } else { //lotsOfObjects is true
             //let's create new views every interaction
             //hahahahah
-            TextView rowTxtWaste = (TextView) rowView.findViewById(R.id.textView);
-            ImageView rowImgWaste = (ImageView) rowView.findViewById(R.id.imageView);
+            TextView rowTxt = (TextView) rowView.findViewById(R.id.textView);
+            ImageView rowImg = (ImageView) rowView.findViewById(R.id.imageView);
             CheckBox rowCheckWaste = (CheckBox) rowView.findViewById(R.id.checkBox);
+
             //look a bunch of redundant objects created during rendering.  How silly :)
             if (fibonacciBool) {
                 //confusion and delay -take the position, add 4, multiply by another number to (a BIG number)
@@ -131,43 +129,38 @@ public class GoatList extends ArrayAdapter<String> {
                 } else {
                     bigNumberWaste = (position + 4) * 2;
                 }
-                int fibValueWaste;
-                fibValueWaste = fibonacci.fib(bigNumberWaste);
+                int fibValue = fibonacci.fib(bigNumberWaste);
                 //wasted time!
-                rowTxtWaste.setText(goatNames[position] + "\nDelay Fibonacci #: " + fibValueWaste);
+                rowTxt.setText(goatNames[position] + "\nDelay Fibonacci #: " + fibValue);
             } else {//no crazy slowdown.
-                rowTxtWaste.setText(goatNames[position]);
+                rowTxt.setText(goatNames[position]);
             }
 
-            rowImgWaste.setImageResource((goatPix[position]));
+            rowImg.setImageResource((goatPix[position]));
             rowCheckWaste.setChecked(goatTrue[position]);
-
             rowCheckWaste.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //add a new variable for the checkbox
-                    CheckBox checkedBoxWaste = (CheckBox) v;
+                    CheckBox checkedBox = (CheckBox) v;
 
-                    //this all has to be inversed. If the user checks the box - it WAS unchecked
-                    if (!checkedBoxWaste.isChecked()) {
+                    //this all has to be inverse. If the user checks the box - it WAS unchecked
+                    if (!checkedBox.isChecked()) {
                         //button WAS checked. User unchecked it
                         //goat
-                        checkedBoxWaste.setChecked(true);
+                        checkedBox.setChecked(true);
                         Toast.makeText(context, "Correct! \nThis is a goat", Toast.LENGTH_SHORT).show();
                     } else {
                         //button was not checked, and user checked it
                         //not a goat
-                        checkedBoxWaste.setChecked(false);
+                        checkedBox.setChecked(false);
                         Toast.makeText(context, "Come on, \nThis is a NOT a goat", Toast.LENGTH_SHORT).show();
                     }
-
                 }
             });
         }
 
-
         return rowView;
     }
-
 }
 

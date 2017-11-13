@@ -8,37 +8,38 @@
     android:layout_height="match_parent">
 
 
-                <ImageView
+    <ImageView
 
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
 
-                    android:id="@+id/imageView"
-                    android:backgroundTintMode="add"/>
-                <LinearLayout
-                    android:layout_toRightOf="@+id/imageView"
+        android:id="@+id/imageView"
+        android:backgroundTintMode="add" />
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_toRightOf="@+id/imageView"
 
-                    android:orientation="vertical">
-                    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
 
-                        android:id="@+id/textView"
-                        />
-                    <CheckBox
+            android:id="@+id/textView" />
 
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+        <CheckBox
 
-                        android:text="@string/goatCheckboxString"
-                        android:id="@+id/checkBox"
-                        />
-                </LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:text="@string/goatCheckboxString"
+            android:id="@+id/checkBox" />
+    </LinearLayout>
 
 
 </LinearLayout>

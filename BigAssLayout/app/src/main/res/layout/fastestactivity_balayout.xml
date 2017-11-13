@@ -13,13 +13,12 @@
 
         android:gravity="center"
         android:text="@string/TimeToLoad"
-        android:id="@+id/textViewTotal"
-        />
+        android:id="@+id/textViewTotal" />
 
-        <ListView
+    <ListView
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/listofgoats"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listofgoats" />
 
 </LinearLayout>
